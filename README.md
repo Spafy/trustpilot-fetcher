@@ -1,4 +1,4 @@
-# trustpilot-fetcher
+# Trustpilot Fetcher
 
 trustpilot-fetcher is a lightweight library for scraping Trustpilot data, including reviews, ratings, overall scores, and profile images.
 
