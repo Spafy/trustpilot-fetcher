@@ -1,6 +1,6 @@
 # Trustpilot Fetcher
 
-trustpilot-fetcher is a lightweight library for scraping Trustpilot data, including reviews, ratings, overall scores, and profile images.
+trustpilot-fetcher is a lightweight Node.js library for scraping Trustpilot data, including reviews, ratings, overall scores, and profile images.
 
 ## Features
 
@@ -26,23 +26,23 @@ yarn add trustpilot-fetcher
 Here’s how to use the library:
 
 ```javascript
-import { scrapeTrustPilot } from 'trustpilot-fetcher'
+const { scrapeTrustPilot } = require('trustpilot-fetcher');
 
-const url = 'https://www.trustpilot.com/review/example.com'
+const url = 'https://www.trustpilot.com/review/example.com';
 
 scrapeTrustPilot(url)
-	.then(data => console.log(data))
-	.catch(error => console.error(error))
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 ```
 
 ### Example Output
 
 ```json
 {
-	"totalReviews": 8330,
-	"reviewsRate": "Excellent",
-	"score": 4.5,
-	"imageUrl": "https://example.com/profile-image.jpg"
+  "totalReviews": 8330,
+  "reviewsRate": "Excellent",
+  "score": 4.5,
+  "imageUrl": "https://example.com/profile-image.jpg"
 }
 ```
 
