@@ -1,0 +1,1 @@
+export { scrapeTrustPilot } from './scrapeTrustPilot';
