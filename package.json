@@ -1,8 +1,9 @@
 {
   "name": "trustpilot-fetcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple library to scrape Trustpilot data like reviews, ratings, and profile images.",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
   "build": "tsc",
    "dev": "tsx src/test"
