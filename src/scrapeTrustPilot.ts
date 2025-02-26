@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { JSDOM } from 'jsdom'
 import { TrustPilotData } from './types'
 
@@ -68,12 +67,24 @@ function extractImageUrl(document: Document): string {
 	return imageUrl
 }
 
+async function fetchData(url: string): Promise<string | undefined> {
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+		return await response.text();
+	} catch (error) {
+		console.error('Error fetching data:', error);
+	}
+}
+
 export async function scrapeTrustPilot(trustPilotUrl: string): Promise<TrustPilotData> {
 	try {
 		validateUrl(trustPilotUrl)
 
-		const res = await axios.get(trustPilotUrl)
-		const dom = new JSDOM(res.data)
+		const res = await fetchData(trustPilotUrl)
+		const dom = new JSDOM(res)
 		const document = dom.window.document
 
 		// Extract data
