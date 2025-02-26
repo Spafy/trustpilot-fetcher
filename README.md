@@ -1,6 +1,6 @@
 # Trustpilot Fetcher
 
-trustpilot-fetcher is a lightweight Node.js library for scraping Trustpilot data, including reviews, ratings, overall scores, and profile images.
+trustpilot-fetcher is a lightweight Node.js library for scraping Trustpilot data, including review count, average rating, overall scores, and profile image.
 
 ## Features
 
