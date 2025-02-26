@@ -89,4 +89,3 @@ export async function scrapeTrustPilot(trustPilotUrl: string): Promise<TrustPilo
 		throw error
 	}
 }
-
