@@ -26,9 +26,9 @@ yarn add trustpilot-fetcher
 Here’s how to use the library:
 
 ```javascript
-const { scrapeTrustPilot } = require('trustpilot-fetcher');
+import { scrapeTrustPilot } from "trustpilot-fetcher";
 
-const url = 'https://www.trustpilot.com/review/example.com';
+const url = "https://www.trustpilot.com/review/example.com";
 
 scrapeTrustPilot(url)
   .then(data => console.log(data))
