@@ -4,14 +4,14 @@ trustpilot-fetcher is a lightweight Node.js library for scraping Trustpilot data
 
 ## Features
 
-- Fetch total review count.
-- Extract ratings such as "Excellent" or "Average".
-- Extract overall Trustpilot score.
-- Retrieve profile image URL.
+- Fetch total review count
+- Extract ratings such as "Excellent" or "Average"
+- Extract overall Trustpilot score
+- Retrieve profile image URL
 
 ## Installation
 
-Install the package using npm:
+Install the package using NPM or Yarn:
 
 ```bash
 # NPM
@@ -48,7 +48,6 @@ scrapeTrustPilot(url)
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 Feel free to reach out with any feedback or feature requests. Happy coding!
-
