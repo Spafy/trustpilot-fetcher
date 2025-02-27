@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { JSDOM } from 'jsdom'
-import { TrustPilotData } from './types'
+import type { TrustPilotData } from './types'
 
 // Constants for CSS selectors
 const SELECTORS = {
@@ -9,7 +8,7 @@ const SELECTORS = {
 	imageElement: 'a[name="business-unit-header-profile-image"] picture img',
 }
 
-//  validate URL
+//  Validate URL
 function validateUrl(url: string): void {
 	try {
 		const parsedUrl = new URL(url)
@@ -21,16 +20,16 @@ function validateUrl(url: string): void {
 	}
 }
 
-// Extract reviews and rating text
+// Extract reviews & rating text
 function extractReviews(document: Document): { totalReviews: number; reviewsRate: string } {
 	const reviewsContainer = document.querySelectorAll(SELECTORS.reviewsContainer)[2]?.textContent
 	if (!reviewsContainer) {
 		throw new Error('Unable to find reviews container')
 	}
 	const [reviewsNumber, reviewsRate] = reviewsContainer.split('•').map(item => item.trim())
-	const totalReviews = parseInt(reviewsNumber.replace(',', ''), 10)
+	const totalReviews = Number(reviewsNumber.replace(',', ''))
 
-	if (isNaN(totalReviews)) {
+	if (Number.isNaN(totalReviews)) {
 		throw new Error('Failed to parse total reviews count')
 	}
 
@@ -44,9 +43,9 @@ function extractScore(document: Document): number {
 		throw new Error('Unable to find score element')
 	}
 
-	const score = parseFloat(scoreElement.textContent.trim())
+	const score = Number(scoreElement.textContent.trim())
 
-	if (isNaN(score)) {
+	if (Number.isNaN(score)) {
 		throw new Error('Failed to parse score value')
 	}
 
@@ -68,12 +67,24 @@ function extractImageUrl(document: Document): string {
 	return imageUrl
 }
 
+async function fetchData(url: string): Promise<string | undefined> {
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+		return await response.text();
+	} catch (error) {
+		console.error('Error fetching data:', error);
+	}
+}
+
 export async function scrapeTrustPilot(trustPilotUrl: string): Promise<TrustPilotData> {
 	try {
 		validateUrl(trustPilotUrl)
 
-		const res = await axios.get(trustPilotUrl)
-		const dom = new JSDOM(res.data)
+		const res = await fetchData(trustPilotUrl)
+		const dom = new JSDOM(res)
 		const document = dom.window.document
 
 		// Extract data
@@ -89,4 +100,3 @@ export async function scrapeTrustPilot(trustPilotUrl: string): Promise<TrustPilo
 		throw error
 	}
 }
-
